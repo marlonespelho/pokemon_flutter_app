@@ -1,0 +1,20 @@
+import 'package:dio/dio.dart';
+
+import 'package:nasa_daily_app/core/design/widgets/snack_bar.dart';
+import 'package:nasa_daily_app/core/http/http_service.dart';
+
+handleException(Object e, [Function? onError, stack]) async {
+  if (onError != null) {
+    onError(e);
+    throw e;
+  }
+
+  if (e is DioException && e.error is HttpError) {
+    HttpError error = e.error as HttpError;
+    showSnackBarMessage(message: error.message, type: SnackBarTypeEnum.error);
+    throw e;
+  }
+
+  showSnackBarMessage(message: e.toString(), type: SnackBarTypeEnum.error);
+  throw e;
+}
