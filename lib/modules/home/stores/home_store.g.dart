@@ -27,15 +27,15 @@ mixin _$HomeStore on HomeStoreBase, Store {
   late final _$apodNasaModelAtom = Atom(name: 'HomeStoreBase.apodNasaModel', context: context);
 
   @override
-  APODNasaModel? get apodNasaModel {
+  APODNasaModel? get apodNasa {
     _$apodNasaModelAtom.reportRead();
-    return super.apodNasaModel;
+    return super.apodNasa;
   }
 
   @override
-  set apodNasaModel(APODNasaModel? value) {
-    _$apodNasaModelAtom.reportWrite(value, super.apodNasaModel, () {
-      super.apodNasaModel = value;
+  set apodNasa(APODNasaModel? value) {
+    _$apodNasaModelAtom.reportWrite(value, super.apodNasa, () {
+      super.apodNasa = value;
     });
   }
 
@@ -43,7 +43,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-apodNasaModel: ${apodNasaModel}
+apodNasaModel: ${apodNasa}
     ''';
   }
 }

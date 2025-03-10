@@ -5,15 +5,13 @@ class Palette {
   static const Color primary = Color(0xFF2C2925);
   static const Color secondary = Color(0xFFFDC61E);
 
-  static const Color primaryTextColor = Color(0xFFFFFFFF);
-  static const Color secondaryTextColor = Color(0xFFCBC3BB);
+  static const Color primaryTextColor = Color(0xFF131313);
+  static const Color secondaryTextColor = Color(0xFF2C2925);
 
   static const Color onPrimaryColor = Color(0xFFFFFFFF);
   static const Color onSecondaryColor = Color(0xFF2C2925);
 
   static const Color backgroundColor = Color(0xFFFFFFFF);
-  static const Color chatBackgroundColor = Color(0xFF131313);
-  static const Color backgroundChatInputColor = onPrimaryColor;
 
   static const Color inputBackground = Color(0xFF131313);
   static const Color inputBorderColor = secondary;

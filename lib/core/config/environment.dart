@@ -18,5 +18,5 @@ class Environment {
     config = _getConfig(environment);
   }
 
-  BaseConfig _getConfig(String environment) => ProductionConfig();
+  BaseConfig _getConfig(String environment) => environment == production ? ProductionConfig() : StagingConfig();
 }

@@ -6,10 +6,9 @@ class NasaHttpService extends DioHttpService {
 
   @override
   Future get({required String path, data, queryParams, Function? onError}) async {
-    queryParams = {
-      ...queryParams,
-      'api_key': Environment().config.nasaApiKey,
-    };
-    super.get(path: path, data: data, queryParams: queryParams, onError: onError);
+    Map<String, dynamic> params = {};
+    params = queryParams ?? {};
+    params['api_key'] = Environment().config.nasaApiKey;
+    return super.get(path: path, data: data, queryParams: params, onError: onError);
   }
 }

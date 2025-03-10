@@ -37,7 +37,7 @@ void main() {
       );
       when(() => getNasaAPODUseCaseMock.execute(null)).thenAnswer((_) async => apodMock);
       await store.getNasaAPOD();
-      expect(store.apodNasaModel, apodMock);
+      expect(store.apodNasa, apodMock);
     });
   });
 }

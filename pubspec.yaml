@@ -24,6 +24,9 @@ dependencies:
   flutter_animate: ^4.1.0
   dio: ^5.2.1+1
   shared_preferences: ^2.3.0
+  cached_network_image: ^3.4.1
+  video_player: ^2.9.3
+  easy_image_viewer: ^1.5.1
 
 dev_dependencies:
   flutter_test:

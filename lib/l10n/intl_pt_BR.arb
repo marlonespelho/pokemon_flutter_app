@@ -5,5 +5,8 @@
   "notFoundExceptionMessage": "Não encontrado.",
   "noConnectionExceptionMessage": "Sem conexão.",
   "timeOutExceptionMessage": "Tempo de requisição expirado.",
-  "defaultExceptionMessage": "Serviço indisponível no momento, tente novamente mais tarde."
+  "defaultExceptionMessage": "Serviço indisponível no momento, tente novamente mais tarde.",
+  "homeAppBarTitle": "Foto Astronômica do Dia",
+  "nasaApodError": "Ocorreu um erro ao tentar obter a Foto Astronimica do dia.",
+  "imageCouldNotBeLoaded": "A imagem não pode ser carregada."
 }

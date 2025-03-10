@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:nasa_daily_app/core/design/widgets/error_widget.dart';
 import 'package:nasa_daily_app/modules/home/models/apod_nasa_model.dart';
 import 'package:nasa_daily_app/modules/home/use_cases/main.dart';
 
@@ -15,11 +16,23 @@ abstract class HomeStoreBase with Store {
   bool isLoading = false;
 
   @observable
-  APODNasaModel? apodNasaModel;
+  bool showHD = false;
+
+  @observable
+  APODNasaModel? apodNasa;
+
+  changeShowHD() {
+    showHD = !showHD;
+  }
 
   getNasaAPOD() async {
-    isLoading = true;
-    apodNasaModel = await _getNasaAPODUseCase.execute(null);
-    isLoading = false;
+    try {
+      isLoading = true;
+      apodNasa = await _getNasaAPODUseCase.execute(null);
+    } catch (e) {
+      handleException(e);
+    } finally {
+      isLoading = false;
+    }
   }
 }

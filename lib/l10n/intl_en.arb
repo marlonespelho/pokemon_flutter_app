@@ -5,5 +5,8 @@
   "notFoundExceptionMessage": "Not found.",
   "noConnectionExceptionMessage": "No connection.",
   "timeOutExceptionMessage": "Request timeout.",
-  "defaultExceptionMessage": "Service unavailable at the moment, please try again later."
+  "defaultExceptionMessage": "Service unavailable at the moment, please try again later.",
+  "homeAppBarTitle": "Astronomical Picture of the Day",
+  "nasaApodError": "An error occurred while trying to get the Astronomical Picture of the Day.",
+  "imageCouldNotBeLoaded": "The image could not be loaded."
 }
