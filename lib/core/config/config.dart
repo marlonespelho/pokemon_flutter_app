@@ -13,7 +13,7 @@ class ProductionConfig extends BaseConfig {
   String get environmentName => 'Production';
 
   @override
-  String get nasaApiBaseUrl => String.fromEnvironment(Constants.nasaApiBaseUrl, defaultValue: '');
+  String get nasaApiBaseUrl => String.fromEnvironment(Constants.nasaApiBaseUrl, defaultValue: 'https://api.nasa.gov/');
 
   @override
   String get nasaApiKey => String.fromEnvironment(Constants.nasaApiKey, defaultValue: '');
@@ -24,8 +24,9 @@ class StagingConfig extends BaseConfig {
   String get environmentName => 'Staging';
 
   @override
-  String get nasaApiBaseUrl => String.fromEnvironment(Constants.nasaApiBaseUrl, defaultValue: '');
+  String get nasaApiBaseUrl => String.fromEnvironment(Constants.nasaApiBaseUrl, defaultValue: 'https://api.nasa.gov/');
 
   @override
-  String get nasaApiKey => String.fromEnvironment(Constants.nasaApiKey, defaultValue: '');
+  String get nasaApiKey =>
+      String.fromEnvironment(Constants.nasaApiKey, defaultValue: 'xTwXRN7mCOoHrHPKSrIanFsmP6EXTUTOZOTrsuam');
 }

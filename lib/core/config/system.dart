@@ -10,7 +10,7 @@ class System {
 
   bool isReady = false;
 
-  final String _environment = Environment.production;
+  final String _environment = Environment.staging;
 
   bool get isProduction => _environment == Environment.production;
 

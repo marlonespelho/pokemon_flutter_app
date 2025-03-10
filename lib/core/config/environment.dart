@@ -9,7 +9,8 @@ class Environment {
 
   static final Environment _singleton = Environment._internal();
 
-  static const String production = 'PRODUCTION';
+  static const String production = 'Production';
+  static const String staging = 'Staging';
 
   BaseConfig config = ProductionConfig();
 

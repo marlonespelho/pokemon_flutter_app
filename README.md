@@ -3,14 +3,23 @@
 A Flutter project for show and favorite image from Nasa API
 
 ## Getting Started
+## Run the project
+- To run the project, you need to have Flutter installed, you can follow the steps at https://docs.flutter.dev/get-started/install.
+- After installing Flutter, first run the command `flutter pub get` in the project folder.
+- Then change the access key for The Movie DB API in the `lib/config.dart` file. Then run the command `flutter run` to run the project.
 
-This project is a starting point for a Flutter application.
+## Before Commit Guide
+1. Run the command `dart run build_runner build --delete-conflicting-outputs` to generate MobX files;
+2. Run the command `dart analyze` to analyze errors and warnings;
+3. Run the command `dart format -l 120 .` to format the code;
+4. Run the command `flutter test` to check if all tests are passing;
 
-A few resources to get you started if this is your first Flutter project:
+# Tests
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Integration Tests
+- To run the integration tests, use the following guide:
+    - Change the access key for The Movie DB API in the `lib/config.dart` file;
+    - Run the command `flutter test integration_test` in your IDE;
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Unit Tests
+- To run the unit tests, run the command `flutter test test/main.dart` in the project folder.
