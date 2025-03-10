@@ -16,4 +16,10 @@ abstract class HomeStoreBase with Store {
 
   @observable
   APODNasaModel? apodNasaModel;
+
+  getNasaAPOD() async {
+    isLoading = true;
+    apodNasaModel = await _getNasaAPODUseCase.execute(null);
+    isLoading = false;
+  }
 }

@@ -8,7 +8,7 @@ class APODNasaModel {
     required this.title,
     required this.url,
   });
-  late final String date;
+  late final DateTime date;
   late final String explanation;
   late final String hdurl;
   late final String mediaType;
@@ -17,7 +17,7 @@ class APODNasaModel {
   late final String url;
 
   APODNasaModel.fromJson(Map<String, dynamic> json) {
-    date = json['date'];
+    date = DateTime.parse(json['date']);
     explanation = json['explanation'];
     hdurl = json['hdurl'];
     mediaType = json['media_type'];
