@@ -4,8 +4,8 @@ import 'package:nasa_daily_app/core/config/system.dart';
 import 'package:nasa_daily_app/modules/app_core.dart';
 
 Future<void> main() async {
-  await System().init();
   WidgetsFlutterBinding.ensureInitialized();
+  await System().init();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeRight,

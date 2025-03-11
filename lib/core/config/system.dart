@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:get_it/get_it.dart';
 import 'package:nasa_daily_app/core/config/environment.dart';
 import 'package:nasa_daily_app/core/services/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class System {
   static final System _instance = System._internal();
@@ -24,6 +25,10 @@ class System {
     if (!GetIt.I.isRegistered<NavigationService>()) {
       GetIt.I.registerLazySingleton(() => NavigationService());
     }
+
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    GetIt.I.registerSingleton<SharedPreferences>(preferences);
 
     if (isReady) {
       return;
