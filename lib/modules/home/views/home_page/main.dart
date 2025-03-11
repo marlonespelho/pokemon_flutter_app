@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:nasa_daily_app/core/config/system.dart';
 import 'package:nasa_daily_app/generated/l10n.dart';
+import 'package:nasa_daily_app/modules/app_store.dart';
 import 'package:nasa_daily_app/modules/home/models/main.dart';
 import 'package:nasa_daily_app/modules/home/stores/apod_favorite_store.dart';
 import 'package:nasa_daily_app/modules/home/stores/home_store.dart';
@@ -17,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomeStore homeStore = Modular.get();
   final APODFavoriteStore favoriteStore = Modular.get();
+  final AppStore appStore = Modular.get();
 
   @override
   void initState() {
@@ -31,11 +34,32 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.current.homeAppBarTitle),
-        actions: [],
+        actions: [
+          IconButton(
+            onPressed: () {
+              appStore.changeThemeMode();
+            },
+            icon: buildThemeModeAction(),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.featured_play_list),
+          ),
+        ],
       ),
       floatingActionButton: buildSearchDateButton(),
       body: buildContent(),
     );
+  }
+
+  Observer buildThemeModeAction() {
+    return Observer(builder: (context) {
+      return Icon(
+        appStore.themeMode == ThemeMode.light
+            ? Icons.dark_mode
+            : Icons.light_mode,
+      );
+    });
   }
 
   buildSearchDateButton() {
@@ -54,13 +78,16 @@ class _HomePageState extends State<HomePage> {
           }
         });
       },
-      child: Icon(Icons.calendar_today),
+      child: Icon(
+        Icons.calendar_today,
+        color: Theme.of(context).colorScheme.onSecondary,
+      ),
     );
   }
 
   Observer buildContent() {
     return Observer(builder: (context) {
-      if(homeStore.apodNasa != null) {
+      if (homeStore.apodNasa != null) {
         favoriteStore.setIsFavorite(homeStore.apodNasa!);
       }
       return homeStore.isLoading

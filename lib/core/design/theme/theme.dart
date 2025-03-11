@@ -19,17 +19,23 @@ class DefaultTheme {
           brightness: Brightness.light,
           onPrimary: Palette.onPrimaryColor,
           onSecondary: Palette.onSecondaryColor,
+          surface: Palette.backgroundColor,
         ),
         scaffoldBackgroundColor: Palette.backgroundColor,
-        iconTheme: DarkTheme.iconTheme(),
+        iconTheme: DefaultTheme.iconTheme(),
+        iconButtonTheme: const IconButtonThemeData(
+          style: ButtonStyle(
+            iconColor: WidgetStatePropertyAll(Palette.onPrimaryColor),
+          ),
+        ),
         dialogBackgroundColor: Palette.primary,
-        floatingActionButtonTheme: DarkTheme.floatingActionButtonTheme(),
-        textTheme: DarkTheme.textTheme(),
-        outlinedButtonTheme: DarkTheme.outlinedButtonTheme(),
-        elevatedButtonTheme: DarkTheme.elevatedButtonTheme(),
-        inputDecorationTheme: DarkTheme.inputDecoration(),
+        floatingActionButtonTheme: DefaultTheme.floatingActionButtonTheme(),
+        textTheme: DefaultTheme.textTheme(),
+        outlinedButtonTheme: DefaultTheme.outlinedButtonTheme(),
+        elevatedButtonTheme: DefaultTheme.elevatedButtonTheme(),
+        inputDecorationTheme: DefaultTheme.inputDecoration(),
         dropdownMenuTheme: DropdownMenuThemeData(
-          inputDecorationTheme: DarkTheme.inputDecoration(),
+          inputDecorationTheme: DefaultTheme.inputDecoration(),
           textStyle: TextStyle(
             color: Palette.primaryTextColor,
             fontSize: 16,
@@ -37,9 +43,9 @@ class DefaultTheme {
             fontFamily: GoogleFonts.barlow().fontFamily,
           ),
         ),
-        textButtonTheme: DarkTheme.textButtonTheme(),
+        textButtonTheme: DefaultTheme.textButtonTheme(),
         brightness: Brightness.light,
-        textSelectionTheme: DarkTheme.textSelectionTheme(),
+        textSelectionTheme: DefaultTheme.textSelectionTheme(),
         appBarTheme: appBarDecoration(),
         progressIndicatorTheme: progressIndicatorTheme(),
         cardColor: Palette.secondary,
@@ -79,13 +85,15 @@ class DefaultTheme {
       errorMaxLines: 2,
       suffixIconColor: Palette.primaryTextColor,
       prefixIconColor: Palette.primaryTextColor,
-      hintStyle: inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
+      hintStyle:
+          inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
       errorStyle: inputDecorationTextTheme(size: 12, color: Palette.error),
       errorBorder: inputDecorationBorderStyle(color: Palette.error),
       focusedErrorBorder: inputDecorationBorderStyle(color: Palette.error),
       contentPadding: const EdgeInsets.all(8),
       border: inputDecorationBorderStyle(color: Palette.primaryTextColor),
-      enabledBorder: inputDecorationBorderStyle(color: Palette.primaryTextColor),
+      enabledBorder:
+          inputDecorationBorderStyle(color: Palette.primaryTextColor),
       focusedBorder: inputDecorationBorderStyle(color: Palette.primary),
     );
   }
@@ -100,7 +108,8 @@ class DefaultTheme {
     );
   }
 
-  static inputDecorationTextTheme({color, double size = 14, bool bold = false}) {
+  static inputDecorationTextTheme(
+      {color, double size = 14, bool bold = false}) {
     return TextStyle(
       color: color,
       fontSize: size,
@@ -210,18 +219,20 @@ class DefaultTheme {
 
   static TextSelectionThemeData textSelectionTheme() {
     return const TextSelectionThemeData(
-        cursorColor: Palette.primary, selectionColor: Palette.secondary, selectionHandleColor: Palette.primary);
+        cursorColor: Palette.primary,
+        selectionColor: Palette.secondary,
+        selectionHandleColor: Palette.primary);
   }
 
   static floatingActionButtonTheme() {
     return const FloatingActionButtonThemeData(
-      backgroundColor: Palette.primary,
+      backgroundColor: Palette.secondary,
       iconSize: 32,
     );
   }
 
   static iconTheme() {
-    return const IconThemeData(color: Palette.primaryTextColor);
+    return const IconThemeData(color: Palette.onPrimaryColor);
   }
 
   static progressIndicatorTheme() {
@@ -238,15 +249,18 @@ class DarkTheme {
 
   static ThemeData getTheme(BuildContext context) => ThemeData(
         useMaterial3: true,
-        primarySwatch: Palette.materialPrimary,
-        primaryColor: Palette.primary,
+        primarySwatch: Palette.materialPrimaryDark,
+        primaryColor: Palette.darkPrimary,
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: Palette.secondary,
-          primary: Palette.primary,
+          secondary: Palette.darkSecondary,
+          primary: Palette.darkPrimary,
+          onPrimary: Palette.darkOnPrimaryColor,
+          onSecondary: Palette.darkOnSecondaryColor,
+          surface: Palette.darkBackgroundColor,
         ),
-        scaffoldBackgroundColor: Palette.backgroundColor,
+        scaffoldBackgroundColor: Palette.darkBackgroundColor,
         iconTheme: DarkTheme.iconTheme(),
-        dialogBackgroundColor: Palette.primary,
+        dialogBackgroundColor: Palette.darkBackgroundColor,
         floatingActionButtonTheme: DarkTheme.floatingActionButtonTheme(),
         textTheme: DarkTheme.textTheme(),
         outlinedButtonTheme: DarkTheme.outlinedButtonTheme(),
@@ -274,9 +288,9 @@ class DarkTheme {
 
   static appBarDecoration() {
     return AppBarTheme(
-      color: Palette.primary,
+      color: Palette.darkBackgroundColor,
       iconTheme: IconThemeData(
-        color: Palette.secondary,
+        color: Palette.darkPrimaryTextColor,
       ),
       titleTextStyle: TextStyle(
         fontFamily: GoogleFonts.barlow().fontFamily,
@@ -303,13 +317,15 @@ class DarkTheme {
       errorMaxLines: 2,
       suffixIconColor: Palette.primaryTextColor,
       prefixIconColor: Palette.primaryTextColor,
-      hintStyle: inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
+      hintStyle:
+          inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
       errorStyle: inputDecorationTextTheme(size: 12, color: Palette.error),
       errorBorder: inputDecorationBorderStyle(color: Palette.error),
       focusedErrorBorder: inputDecorationBorderStyle(color: Palette.error),
       contentPadding: const EdgeInsets.all(8),
       border: inputDecorationBorderStyle(color: Palette.primaryTextColor),
-      enabledBorder: inputDecorationBorderStyle(color: Palette.primaryTextColor),
+      enabledBorder:
+          inputDecorationBorderStyle(color: Palette.primaryTextColor),
       focusedBorder: inputDecorationBorderStyle(color: Palette.primary),
     );
   }
@@ -324,7 +340,8 @@ class DarkTheme {
     );
   }
 
-  static inputDecorationTextTheme({color, double size = 14, bool bold = false}) {
+  static inputDecorationTextTheme(
+      {color, double size = 14, bool bold = false}) {
     return TextStyle(
       color: color,
       fontSize: size,
@@ -337,50 +354,50 @@ class DarkTheme {
           titleLarge: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
           ),
           titleMedium: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
           ),
           titleSmall: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
           ),
           bodySmall: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
             decorationThickness: 0,
           ),
           bodyMedium: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
             decorationThickness: 0,
           ),
           bodyLarge: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
             decorationThickness: 0,
           ),
           labelLarge: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
           ),
           labelMedium: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
           ),
           labelSmall: TextStyle(
             fontSize: 10,
             fontWeight: FontWeight.w400,
-            color: Palette.primaryTextColor,
+            color: Palette.darkPrimaryTextColor,
           ),
         ),
       );
@@ -434,23 +451,25 @@ class DarkTheme {
 
   static TextSelectionThemeData textSelectionTheme() {
     return const TextSelectionThemeData(
-        cursorColor: Palette.primary, selectionColor: Palette.secondary, selectionHandleColor: Palette.primary);
+        cursorColor: Palette.primary,
+        selectionColor: Palette.secondary,
+        selectionHandleColor: Palette.primary);
   }
 
   static floatingActionButtonTheme() {
     return const FloatingActionButtonThemeData(
-      backgroundColor: Palette.primary,
+      backgroundColor: Palette.darkPrimary,
       iconSize: 32,
     );
   }
 
   static iconTheme() {
-    return const IconThemeData(color: Palette.primaryTextColor);
+    return const IconThemeData(color: Palette.darkPrimaryTextColor);
   }
 
   static progressIndicatorTheme() {
     return const ProgressIndicatorThemeData(
-      color: Palette.primary,
+      color: Palette.darkPrimary,
     );
   }
 }

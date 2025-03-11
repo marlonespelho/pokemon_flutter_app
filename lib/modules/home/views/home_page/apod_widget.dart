@@ -79,7 +79,7 @@ class NasaApodWidget extends StatelessWidget {
           child: Container(
             width: apodNasa.mediaType == 'image' ? 96 : 48,
             decoration: BoxDecoration(
-              color: Palette.primary,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
             ),
             child: Row(
@@ -103,7 +103,7 @@ class NasaApodWidget extends StatelessWidget {
       },
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
-        color: isFavorite ? Colors.red : Colors.white,
+        color: isFavorite ? Colors.red : Theme.of(context).colorScheme.primary,
       ),
     );
   }
@@ -114,8 +114,10 @@ class NasaApodWidget extends StatelessWidget {
         onHdPressed();
       },
       iconSize: 32,
-      color: Colors.white,
-      icon: Icon(showHd ? Icons.hd_outlined : Icons.sd_outlined),
+      icon: Icon(
+        showHd ? Icons.hd_outlined : Icons.sd_outlined,
+        color: Theme.of(context).colorScheme.primary,
+      ),
     );
   }
 

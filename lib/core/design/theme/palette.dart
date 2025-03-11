@@ -19,6 +19,19 @@ class Palette {
   static const Color disabledColor = Color(0xFF656565);
   static const Color dividerColor = Color(0xFFE5E5E5);
 
+  // dark colors
+  static const Color darkPrimary = Color(0xFFFFFFFF);
+  static const Color darkSecondary = Color(0xFFFDC61E);
+
+  static const Color darkPrimaryTextColor = Color(0xFFFFFFFF);
+  static const Color darkSecondaryTextColor = Color(0xFFFDC61E);
+
+  static const Color darkOnPrimaryColor = Color(0xFF2C2925);
+  static const Color darkOnSecondaryColor = Color(0xFF2C2925);
+
+  static const Color darkBackgroundColor = Color(0xFF2C2925);
+
+
   static const Color warning = Colors.yellow;
   static const Color error = Color(0xFFE53E3E);
   static const Color success = Color(0xFF68D391);
@@ -28,4 +41,5 @@ class Palette {
   static Color get backgroundSnackSuccess => generateMaterialColor(Color(0xFF1EB652));
 
   static MaterialColor materialPrimary = generateMaterialColor(primary);
+  static MaterialColor materialPrimaryDark = generateMaterialColor(darkPrimary);
 }

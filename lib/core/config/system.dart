@@ -27,7 +27,6 @@ class System {
     }
 
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-
     GetIt.I.registerSingleton<SharedPreferences>(preferences);
 
     if (isReady) {
