@@ -6,6 +6,10 @@ import 'package:nasa_daily_app/modules/app_core.dart';
 Future<void> main() async {
   await System().init();
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+  ]);
   runApp(const AppCore());
 }

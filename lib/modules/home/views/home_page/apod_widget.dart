@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nasa_daily_app/core/design/theme/palette.dart';
 import 'package:nasa_daily_app/generated/l10n.dart';
 import 'package:nasa_daily_app/modules/home/models/apod_nasa_model.dart';
-import 'package:video_player/video_player.dart';
+import 'package:nasa_daily_app/modules/home/views/home_page/apod_video_widget.dart';
 
 class NasaApodWidget extends StatelessWidget {
   final APODNasaModel apodNasa;
@@ -24,6 +25,18 @@ class NasaApodWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 600) {
+          return buildPortraitContent(context);
+        } else {
+          return buildLandsCapeContent(context);
+        }
+      },
+    );
+  }
+
+  buildPortraitContent(BuildContext context) {
     return Column(
       children: [
         buildContent(context),
@@ -33,18 +46,51 @@ class NasaApodWidget extends StatelessWidget {
     );
   }
 
+  buildLandsCapeContent(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          flex: 6,
+          child: buildContent(context),
+        ),
+        Flexible(
+          flex: 4,
+          child: Column(
+            children: [
+              buildTitle(context),
+              buildExplanation(context),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   buildContent(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        apodNasa.mediaType == 'video' ? buildVideo(context) : buildImage(context),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            buildHdButton(context),
-            buildFavoriteButton(context),
-          ],
+        apodNasa.mediaType == 'video'
+            ? ApodVideoWidget(apodNasa: apodNasa)
+            : buildImage(context),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Container(
+            width: apodNasa.mediaType == 'image' ? 96 : 48,
+            decoration: BoxDecoration(
+              color: Palette.primary,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (apodNasa.mediaType == 'image') buildHdButton(context),
+                buildFavoriteButton(context),
+              ],
+            ),
+          ),
         ),
       ],
     );
@@ -73,41 +119,48 @@ class NasaApodWidget extends StatelessWidget {
     );
   }
 
-  buildVideo(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: VideoPlayer(
-        VideoPlayerController.networkUrl(Uri.dataFromString(apodNasa.url)),
-      ),
-    );
-  }
-
   Widget buildImage(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: showHd ? apodNasa.hdurl : apodNasa.url,
-      width: MediaQuery.of(context).size.width,
-      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-        child: CircularProgressIndicator(value: downloadProgress.progress),
-      ),
-      errorWidget: (context, url, error) => Container(
-        color: Palette.onSecondaryColor.withValues(alpha: 0.2),
-        padding: EdgeInsets.symmetric(vertical: 64),
-        child: Column(
-          spacing: 16,
-          children: [
-            Icon(
-              Icons.broken_image_outlined,
-              color: Palette.primary,
-              size: 60,
+    return LayoutBuilder(builder: (context, constraints) {
+      return InkWell(
+        onTap: () {
+          showImageViewer(
+            context,
+            CachedNetworkImageProvider(
+              showHd ? apodNasa.hdurl ?? "" : apodNasa.url ?? "",
             ),
-            Text(
-              S.current.imageCouldNotBeLoaded,
-              style: Theme.of(context).textTheme.bodyMedium,
+            useSafeArea: true,
+            swipeDismissible: true,
+            doubleTapZoomable: true,
+          );
+        },
+        child: CachedNetworkImage(
+          imageUrl: showHd ? apodNasa.hdurl ?? "" : apodNasa.url ?? "",
+          width: MediaQuery.of(context).size.width *
+              (constraints.maxWidth < 600 ? 1 : 0.6),
+          progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+            child: CircularProgressIndicator(value: downloadProgress.progress),
+          ),
+          errorWidget: (context, url, error) => Container(
+            color: Palette.onSecondaryColor.withValues(alpha: 0.2),
+            padding: EdgeInsets.symmetric(vertical: 64),
+            child: Column(
+              spacing: 16,
+              children: [
+                Icon(
+                  Icons.broken_image_outlined,
+                  color: Palette.primary,
+                  size: 60,
+                ),
+                Text(
+                  S.current.imageCouldNotBeLoaded,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget buildTitle(BuildContext context) {

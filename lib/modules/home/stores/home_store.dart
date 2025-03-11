@@ -21,15 +21,18 @@ abstract class HomeStoreBase with Store {
   @observable
   APODNasaModel? apodNasa;
 
+  DateTime searchDate = DateTime.now();
+
   changeShowHD() {
     showHD = !showHD;
   }
 
-  getNasaAPOD() async {
+  getNasaAPOD({DateTime? date}) async {
     try {
       isLoading = true;
-      apodNasa = await _getNasaAPODUseCase.execute(null);
+      apodNasa = await _getNasaAPODUseCase.execute(date);
     } catch (e) {
+      apodNasa = null;
       handleException(e);
     } finally {
       isLoading = false;

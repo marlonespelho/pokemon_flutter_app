@@ -4,7 +4,9 @@ import 'package:nasa_daily_app/core/design/theme/palette.dart';
 import 'package:nasa_daily_app/core/services/main.dart';
 
 showSnackBarMessage({required String message, required SnackBarTypeEnum type}) {
-  var context = GetIt.I.get<NavigationService>().navigatorKey.currentState!.context;
+  var context = GetIt.I.get<NavigationService>().navigatorKey.currentState?.context;
+
+  if(context == null) return;
 
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(

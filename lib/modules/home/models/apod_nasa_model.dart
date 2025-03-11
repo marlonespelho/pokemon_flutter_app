@@ -10,11 +10,11 @@ class APODNasaModel {
   });
   late final DateTime date;
   late final String explanation;
-  late final String hdurl;
+  late final String? hdurl;
   late final String mediaType;
   late final String serviceVersion;
   late final String title;
-  late final String url;
+  late final String? url;
 
   APODNasaModel.fromJson(Map<String, dynamic> json) {
     date = DateTime.parse(json['date']);

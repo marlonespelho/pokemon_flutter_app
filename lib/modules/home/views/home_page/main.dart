@@ -40,12 +40,16 @@ class _HomePageState extends State<HomePage> {
       onPressed: () {
         showDatePicker(
           context: context,
-          initialDate: DateTime.now(),
+          initialDate: homeStore.searchDate,
+          currentDate: homeStore.searchDate,
           firstDate: DateTime(1995, 06, 16),
           lastDate: DateTime.now(),
         ).then((value) {
           if (value != null) {
-            homeStore.getNasaAPOD();
+            homeStore.searchDate = value;
+            homeStore.getNasaAPOD(
+              date: value
+            );
           }
         });
       },
