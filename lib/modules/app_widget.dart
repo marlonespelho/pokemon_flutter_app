@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nasa_daily_app/core/config/system.dart';
 import 'package:nasa_daily_app/core/design/theme/theme.dart';
 import 'package:nasa_daily_app/core/services/navigation.dart';
 import 'package:nasa_daily_app/generated/l10n.dart';

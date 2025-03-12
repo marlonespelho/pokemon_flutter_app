@@ -25,7 +25,7 @@ class DioHttpService implements HttpService {
     }
 
     (_client.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
-      HttpClient client = new HttpClient();
+      HttpClient client = HttpClient();
       client.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
       return client;
     };

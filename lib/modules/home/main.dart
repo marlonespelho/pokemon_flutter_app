@@ -3,12 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:nasa_daily_app/modules/home/repositories/nasa_repository/main.dart';
 import 'package:nasa_daily_app/modules/home/stores/apod_favorite_store.dart';
 import 'package:nasa_daily_app/modules/home/stores/home_store.dart';
-import 'package:nasa_daily_app/modules/home/use_cases/get_apod_favorite_list_use_case.dart';
-import 'package:nasa_daily_app/modules/home/use_cases/get_nasa_apod_use_case.dart';
 import 'package:nasa_daily_app/modules/home/use_cases/main.dart';
 import 'package:nasa_daily_app/modules/home/views/favorite_page/main.dart';
 import 'package:nasa_daily_app/modules/home/views/home_page/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeModule extends Module {
   static const String homeRoute = "/home";

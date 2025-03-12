@@ -5,14 +5,6 @@ import 'package:nasa_daily_app/core/http/http_service.dart';
 
 class DioInterceptor extends InterceptorsWrapper {
   @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) {
-    super.onRequest(options, handler);
-  }
-
-  @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     Exception? exception;
 
@@ -20,37 +12,36 @@ class DioInterceptor extends InterceptorsWrapper {
     var errorMessage = err.response?.data?["message"] ?? err.response?.data?['errors']['json'];
     if (statusCode != null) {
       exception = {
-            400: BadRequestException(
-              statusCode: err.response?.statusCode,
-              serverError: errorMessage,
-            ),
-            401: UnauthorizedException(
-              statusCode: err.response?.statusCode,
-              serverError: errorMessage,
-            ),
-            404: NotFoundException(
-              statusCode: err.response?.statusCode,
-              serverError: errorMessage,
-            ),
-            422: UnprocessableEntityException(
-              statusCode: err.response?.statusCode,
-              serverError: errorMessage,
-            ),
-            500: (err.message != null && err.message!.toString().contains("401"))
-                ? UnauthorizedException(
-                    statusCode: err.response?.statusCode,
-                    serverError: errorMessage,
-                  )
-                : InternalServerError(
-                    statusCode: err.response?.statusCode,
-                    serverError: errorMessage,
-                  ),
-            522: TimeOutException(
-              statusCode: err.response?.statusCode,
-              serverError: errorMessage,
-            ),
-          }[statusCode] ??
-          null;
+        400: BadRequestException(
+          statusCode: err.response?.statusCode,
+          serverError: errorMessage,
+        ),
+        401: UnauthorizedException(
+          statusCode: err.response?.statusCode,
+          serverError: errorMessage,
+        ),
+        404: NotFoundException(
+          statusCode: err.response?.statusCode,
+          serverError: errorMessage,
+        ),
+        422: UnprocessableEntityException(
+          statusCode: err.response?.statusCode,
+          serverError: errorMessage,
+        ),
+        500: (err.message != null && err.message!.toString().contains("401"))
+            ? UnauthorizedException(
+                statusCode: err.response?.statusCode,
+                serverError: errorMessage,
+              )
+            : InternalServerError(
+                statusCode: err.response?.statusCode,
+                serverError: errorMessage,
+              ),
+        522: TimeOutException(
+          statusCode: err.response?.statusCode,
+          serverError: errorMessage,
+        ),
+      }[statusCode];
     }
 
     exception ??= {
@@ -80,16 +71,10 @@ class DioInterceptor extends InterceptorsWrapper {
       exception = NoConnectionException();
     }
 
-    if (exception == null)
-      exception = UnexpectedException(
-        statusCode: err.response?.statusCode,
-        serverError: err.response?.data['errors']['json'],
-      );
+    exception ??= UnexpectedException(
+      statusCode: err.response?.statusCode,
+      serverError: err.response?.data['errors']['json'],
+    );
     throw exception;
-  }
-
-  @override
-  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
-    super.onResponse(response, handler);
   }
 }

@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class APODNasaModel {
   APODNasaModel({
     required this.date,
@@ -29,14 +27,14 @@ class APODNasaModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['date'] = date.toIso8601String();
-    _data['explanation'] = explanation;
-    _data['hdurl'] = hdurl;
-    _data['media_type'] = mediaType;
-    _data['service_version'] = serviceVersion;
-    _data['title'] = title;
-    _data['url'] = url;
-    return _data;
+    final data = <String, dynamic>{};
+    data['date'] = date.toIso8601String();
+    data['explanation'] = explanation;
+    data['hdurl'] = hdurl;
+    data['media_type'] = mediaType;
+    data['service_version'] = serviceVersion;
+    data['title'] = title;
+    data['url'] = url;
+    return data;
   }
 }
