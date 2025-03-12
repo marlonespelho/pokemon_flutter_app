@@ -1,12 +1,15 @@
 {
   "badRequestExceptionMessage": "Bad request, please check the data and try again.",
   "unauthorizedExceptionMessage": "Unauthorized",
-  "unauthorizedAlertMessage": "Your session has expired, please log in again to continue using the application.",
+  "unauthorizedAlertMessage": "Your session has expired, please log in again to continue using the app.",
   "notFoundExceptionMessage": "Not found.",
   "noConnectionExceptionMessage": "No connection.",
-  "timeOutExceptionMessage": "Request timeout.",
+  "timeOutExceptionMessage": "Request timed out.",
   "defaultExceptionMessage": "Service unavailable at the moment, please try again later.",
-  "homeAppBarTitle": "Astronomical Picture of the Day",
-  "nasaApodError": "An error occurred while trying to get the Astronomical Picture of the Day.",
-  "imageCouldNotBeLoaded": "The image could not be loaded."
+  "homeAppBarTitle": "Astronomy Picture of the Day",
+  "nasaApodError": "An error occurred while trying to get the Astronomy Picture of the Day.",
+  "imageCouldNotBeLoaded": "The image could not be loaded.",
+  "favoritePageTitle": "Favorites",
+  "favoritePageEmptyList": "It looks like you haven't added any items to your favorites yet.",
+  "backButtonLabel": "Back"
 }
