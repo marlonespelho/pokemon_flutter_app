@@ -26,8 +26,10 @@ class System {
       GetIt.I.registerLazySingleton(() => NavigationService());
     }
 
-    final SharedPreferences preferences = await SharedPreferences.getInstance();
-    GetIt.I.registerSingleton<SharedPreferences>(preferences);
+    if (!GetIt.I.isRegistered<SharedPreferences>()) {
+      final SharedPreferences preferences = await SharedPreferences.getInstance();
+      GetIt.I.registerSingleton<SharedPreferences>(preferences);
+    }
 
     if (isReady) {
       return;

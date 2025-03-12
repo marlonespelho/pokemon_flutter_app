@@ -37,8 +37,7 @@ Future<void> main() async {
   });
 
   group("APOD Favorite Store Unit tests", () {
-    test("getAPODFavoriteList should be return list of favorite apod",
-        () async {
+    test("getAPODFavoriteList should be return list of favorite apod", () async {
       APODNasaModel apodMock = APODNasaModel(
         date: DateTime.now(),
         explanation: faker.lorem.sentence(),
@@ -51,15 +50,13 @@ Future<void> main() async {
 
       List<APODNasaModel> favoriteList = [apodMock];
 
-      prefs.setStringList('favoriteList',
-          favoriteList.map((e) => jsonEncode(e.toJson())).toList());
+      prefs.setStringList('favoriteList', favoriteList.map((e) => jsonEncode(e.toJson())).toList());
 
       await store.getAPODFavoriteList();
       assert(store.favoriteList.length == 1);
     });
 
-    test("getAPODFavoriteList should be return empty list of favorite apod",
-        () async {
+    test("getAPODFavoriteList should be return empty list of favorite apod", () async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setStringList('favoriteList', []);
 
@@ -67,11 +64,9 @@ Future<void> main() async {
       assert(store.favoriteList.isEmpty);
     });
 
-    test("updateAPODFavoriteList should be add item in list of favorite apod",
-        () async {
+    test("updateAPODFavoriteList should be add item in list of favorite apod", () async {
       List<APODNasaModel> favoriteList = [];
-      await prefs.setStringList('favoriteList',
-          favoriteList.map((e) => e.toJson().toString()).toList());
+      await prefs.setStringList('favoriteList', favoriteList.map((e) => e.toJson().toString()).toList());
 
       assert(store.favoriteList.isEmpty);
 
@@ -89,9 +84,7 @@ Future<void> main() async {
       assert(store.favoriteList.length == 1);
     });
 
-    test(
-        "updateAPODFavoriteList should be remove item in list of favorite apod",
-        () async {
+    test("updateAPODFavoriteList should be remove item in list of favorite apod", () async {
       APODNasaModel apodMock = APODNasaModel(
         date: DateTime.now(),
         explanation: faker.lorem.sentence(),
@@ -104,8 +97,7 @@ Future<void> main() async {
 
       List<APODNasaModel> favoriteList = [apodMock];
 
-      await prefs.setStringList('favoriteList',
-          favoriteList.map((e) => jsonEncode(e.toJson())).toList());
+      await prefs.setStringList('favoriteList', favoriteList.map((e) => jsonEncode(e.toJson())).toList());
 
       assert(store.favoriteList.length == 1);
 
@@ -114,8 +106,7 @@ Future<void> main() async {
       assert(store.favoriteList.isEmpty);
     });
 
-    test("isFavorite should be return true when apod is in favorite list",
-        () async {
+    test("isFavorite should be return true when apod is in favorite list", () async {
       APODNasaModel apodMock = APODNasaModel(
         date: DateTime.now(),
         explanation: faker.lorem.sentence(),
@@ -128,15 +119,13 @@ Future<void> main() async {
 
       List<APODNasaModel> favoriteList = [apodMock];
 
-      await prefs.setStringList('favoriteList',
-          favoriteList.map((e) => jsonEncode(e.toJson())).toList());
+      await prefs.setStringList('favoriteList', favoriteList.map((e) => jsonEncode(e.toJson())).toList());
       await store.getAPODFavoriteList();
       store.setIsFavorite(apodMock);
       assert(store.isFavorite);
     });
 
-    test("isFavorite should be return false when apod isn't in favorite list",
-        () async {
+    test("isFavorite should be return false when apod isn't in favorite list", () async {
       APODNasaModel apodMock = APODNasaModel(
         date: DateTime.now(),
         explanation: faker.lorem.sentence(),

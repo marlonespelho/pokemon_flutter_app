@@ -26,6 +26,7 @@ class NasaApodWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
+      key: Key("APODWidget"),
       builder: (context, constraints) {
         if (constraints.maxWidth < 600) {
           return buildPortraitContent(context);
@@ -71,9 +72,7 @@ class NasaApodWidget extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        apodNasa.mediaType == 'video'
-            ? ApodVideoWidget(apodNasa: apodNasa)
-            : buildImage(context),
+        apodNasa.mediaType == 'video' ? ApodVideoWidget(apodNasa: apodNasa) : buildImage(context),
         Align(
           alignment: Alignment.bottomRight,
           child: Container(
@@ -102,6 +101,7 @@ class NasaApodWidget extends StatelessWidget {
         addFavorite(apodNasa);
       },
       icon: Icon(
+        key: isFavorite ? Key("removeFavoriteButton") : Key("addFavoriteButton"),
         isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
         color: isFavorite ? Colors.red : Theme.of(context).colorScheme.primary,
       ),
@@ -137,8 +137,7 @@ class NasaApodWidget extends StatelessWidget {
         },
         child: CachedNetworkImage(
           imageUrl: showHd ? apodNasa.hdurl ?? "" : apodNasa.url ?? "",
-          width: MediaQuery.of(context).size.width *
-              (constraints.maxWidth < 600 ? 1 : 0.6),
+          width: MediaQuery.of(context).size.width * (constraints.maxWidth < 600 ? 1 : 0.6),
           progressIndicatorBuilder: (context, url, downloadProgress) => Center(
             child: CircularProgressIndicator(value: downloadProgress.progress),
           ),

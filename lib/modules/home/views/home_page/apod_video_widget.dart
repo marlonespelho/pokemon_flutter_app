@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -20,7 +19,6 @@ class _ApodVideoWidgetState extends State<ApodVideoWidget> {
 
   Observable<bool> videoPlayerError = Observable(false);
 
-
   @override
   void initState() {
     super.initState();
@@ -29,12 +27,12 @@ class _ApodVideoWidgetState extends State<ApodVideoWidget> {
         widget.apodNasa.url ?? "",
       ),
     )..initialize().then((_) {
-      setState(() {});
-    }).onError((error, stackTrace) {
-      runInAction(() {
-        videoPlayerError.value = true;
+        setState(() {});
+      }).onError((error, stackTrace) {
+        runInAction(() {
+          videoPlayerError.value = true;
+        });
       });
-    });
   }
 
   @override
@@ -43,18 +41,18 @@ class _ApodVideoWidgetState extends State<ApodVideoWidget> {
       if (videoPlayerError.value) {
         return HtmlWidget(
           "<iframe src='${widget.apodNasa.url}' "
-              "width='100%' height='100%' frameborder='0' allow='autoplay; "
-              "encrypted-media' allowfullscreen>"
-              "</iframe>",
+          "width='100%' height='100%' frameborder='0' allow='autoplay; "
+          "encrypted-media' allowfullscreen>"
+          "</iframe>",
           baseUrl: Uri.parse(widget.apodNasa.url!),
         );
       }
 
       return controller.value.isInitialized
           ? AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: VideoPlayer(controller),
-      )
+              aspectRatio: controller.value.aspectRatio,
+              child: VideoPlayer(controller),
+            )
           : SizedBox();
     });
   }

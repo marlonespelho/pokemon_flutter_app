@@ -13,6 +13,7 @@ A Flutter project for show and favorite image from Nasa API
 2. Run the command `dart analyze` to analyze errors and warnings;
 3. Run the command `dart format -l 120 .` to format the code;
 4. Run the command `flutter test` to check if all tests are passing;
+5. Run the command `flutter test integration_test` to check if all integration tests are passing.
 
 # Tests
 

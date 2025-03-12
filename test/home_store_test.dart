@@ -70,7 +70,7 @@ void main() {
 void setupDependencyInjection() {
   final NavigationServiceMock navigationServiceMock = NavigationServiceMock();
   when(() => navigationServiceMock.navigatorKey).thenReturn(GlobalKey<NavigatorState>());
-  if(GetIt.instance.isRegistered<NavigationService>()) {
+  if (GetIt.instance.isRegistered<NavigationService>()) {
     GetIt.instance.unregister<NavigationService>();
   }
   GetIt.instance.registerSingleton<NavigationService>(navigationServiceMock);

@@ -12,8 +12,7 @@ abstract class APODFavoriteStoreBase with Store {
 
   APODFavoriteStoreBase({
     required GetAPODFavoriteListUseCaseContract getAPODFavoriteListUseCase,
-    required UpdateAPODFavoriteListUseCaseContract
-        updateAPODFavoriteListUseCase,
+    required UpdateAPODFavoriteListUseCaseContract updateAPODFavoriteListUseCase,
   })  : _getAPODFavoriteListUseCase = getAPODFavoriteListUseCase,
         _updateAPODFavoriteListUseCase = updateAPODFavoriteListUseCase {
     init();

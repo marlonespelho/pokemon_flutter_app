@@ -21,38 +21,35 @@ class AppWidget extends StatelessWidget {
     final AppStore appStore = Modular.get();
 
     return Sizer(builder: (context, orientation, deviceType) {
-
       Modular.setNavigatorKey(GetIt.I.get<NavigationService>().navigatorKey);
       Modular.setInitialRoute(HomeModule.homeRoute);
 
-      return Observer(
-        builder: (context) {
-          return MaterialApp.router(
-            routeInformationParser: Modular.routeInformationParser,
-            routerDelegate: Modular.routerDelegate,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
-              PointerDeviceKind.mouse,
-              PointerDeviceKind.touch,
-              PointerDeviceKind.stylus,
-              PointerDeviceKind.trackpad,
-              PointerDeviceKind.unknown
-            }),
-            debugShowCheckedModeBanner: false,
-            supportedLocales: const <Locale>[
-              Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
-            ],
-            theme: DefaultTheme.getTheme(context),
-            darkTheme: DarkTheme.getTheme(context),
-            themeMode: appStore.themeMode,
-          );
-        }
-      );
+      return Observer(builder: (context) {
+        return MaterialApp.router(
+          routeInformationParser: Modular.routeInformationParser,
+          routerDelegate: Modular.routerDelegate,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.stylus,
+            PointerDeviceKind.trackpad,
+            PointerDeviceKind.unknown
+          }),
+          debugShowCheckedModeBanner: false,
+          supportedLocales: const <Locale>[
+            Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
+          ],
+          theme: DefaultTheme.getTheme(context),
+          darkTheme: DarkTheme.getTheme(context),
+          themeMode: appStore.themeMode,
+        );
+      });
     });
   }
 }

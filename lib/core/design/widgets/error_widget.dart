@@ -13,7 +13,6 @@ handleException(Object e, [Function? onError, stack]) async {
     HttpError error = e.error as HttpError;
     showSnackBarMessage(message: error.message, type: SnackBarTypeEnum.error);
     return;
-
   }
 
   showSnackBarMessage(message: e.toString(), type: SnackBarTypeEnum.error);

@@ -31,7 +31,6 @@ class Palette {
 
   static const Color darkBackgroundColor = Color(0xFF2C2925);
 
-
   static const Color warning = Colors.yellow;
   static const Color error = Color(0xFFE53E3E);
   static const Color success = Color(0xFF68D391);

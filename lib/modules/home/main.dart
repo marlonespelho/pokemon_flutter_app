@@ -25,9 +25,7 @@ class HomeModule extends Module {
               GetIt.I.get(),
             )),
         Bind(
-          (i) => APODFavoriteStore(
-              getAPODFavoriteListUseCase: i.get(),
-              updateAPODFavoriteListUseCase: i.get()),
+          (i) => APODFavoriteStore(getAPODFavoriteListUseCase: i.get(), updateAPODFavoriteListUseCase: i.get()),
         ),
         Bind(
           (i) => HomeStore(getNasaAPODUseCase: i.get()),

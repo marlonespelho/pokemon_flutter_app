@@ -30,15 +30,14 @@ class _FavoritePageState extends State<FavoritePage> {
             child: CircularProgressIndicator(),
           );
         }
-        return favoriteStore.favoriteList.isEmpty
-            ? buildEmptyList()
-            : buildFavoriteList();
+        return favoriteStore.favoriteList.isEmpty ? buildEmptyList() : buildFavoriteList();
       }),
     );
   }
 
   buildEmptyList() {
     return Padding(
+      key: Key("emptyFavoriteList"),
       padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -81,6 +80,7 @@ class _FavoritePageState extends State<FavoritePage> {
 
   buildFavoriteList() {
     return ListView.builder(
+      key: Key("favoriteList"),
       itemBuilder: (context, index) {
         final apod = favoriteStore.favoriteList[index];
         return Card(
@@ -100,8 +100,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   height: 60,
                   fit: BoxFit.fill,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      CircularProgressIndicator(
-                          value: downloadProgress.progress),
+                      CircularProgressIndicator(value: downloadProgress.progress),
                   errorWidget: (context, url, error) => Icon(
                     Icons.ondemand_video,
                     size: 40,

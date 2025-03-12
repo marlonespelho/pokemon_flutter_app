@@ -85,15 +85,13 @@ class DefaultTheme {
       errorMaxLines: 2,
       suffixIconColor: Palette.primaryTextColor,
       prefixIconColor: Palette.primaryTextColor,
-      hintStyle:
-          inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
+      hintStyle: inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
       errorStyle: inputDecorationTextTheme(size: 12, color: Palette.error),
       errorBorder: inputDecorationBorderStyle(color: Palette.error),
       focusedErrorBorder: inputDecorationBorderStyle(color: Palette.error),
       contentPadding: const EdgeInsets.all(8),
       border: inputDecorationBorderStyle(color: Palette.primaryTextColor),
-      enabledBorder:
-          inputDecorationBorderStyle(color: Palette.primaryTextColor),
+      enabledBorder: inputDecorationBorderStyle(color: Palette.primaryTextColor),
       focusedBorder: inputDecorationBorderStyle(color: Palette.primary),
     );
   }
@@ -108,8 +106,7 @@ class DefaultTheme {
     );
   }
 
-  static inputDecorationTextTheme(
-      {color, double size = 14, bool bold = false}) {
+  static inputDecorationTextTheme({color, double size = 14, bool bold = false}) {
     return TextStyle(
       color: color,
       fontSize: size,
@@ -219,9 +216,7 @@ class DefaultTheme {
 
   static TextSelectionThemeData textSelectionTheme() {
     return const TextSelectionThemeData(
-        cursorColor: Palette.primary,
-        selectionColor: Palette.secondary,
-        selectionHandleColor: Palette.primary);
+        cursorColor: Palette.primary, selectionColor: Palette.secondary, selectionHandleColor: Palette.primary);
   }
 
   static floatingActionButtonTheme() {
@@ -317,15 +312,13 @@ class DarkTheme {
       errorMaxLines: 2,
       suffixIconColor: Palette.primaryTextColor,
       prefixIconColor: Palette.primaryTextColor,
-      hintStyle:
-          inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
+      hintStyle: inputDecorationTextTheme(size: 14, color: Palette.primaryTextColor),
       errorStyle: inputDecorationTextTheme(size: 12, color: Palette.error),
       errorBorder: inputDecorationBorderStyle(color: Palette.error),
       focusedErrorBorder: inputDecorationBorderStyle(color: Palette.error),
       contentPadding: const EdgeInsets.all(8),
       border: inputDecorationBorderStyle(color: Palette.primaryTextColor),
-      enabledBorder:
-          inputDecorationBorderStyle(color: Palette.primaryTextColor),
+      enabledBorder: inputDecorationBorderStyle(color: Palette.primaryTextColor),
       focusedBorder: inputDecorationBorderStyle(color: Palette.primary),
     );
   }
@@ -340,8 +333,7 @@ class DarkTheme {
     );
   }
 
-  static inputDecorationTextTheme(
-      {color, double size = 14, bool bold = false}) {
+  static inputDecorationTextTheme({color, double size = 14, bool bold = false}) {
     return TextStyle(
       color: color,
       fontSize: size,
@@ -451,9 +443,7 @@ class DarkTheme {
 
   static TextSelectionThemeData textSelectionTheme() {
     return const TextSelectionThemeData(
-        cursorColor: Palette.primary,
-        selectionColor: Palette.secondary,
-        selectionHandleColor: Palette.primary);
+        cursorColor: Palette.primary, selectionColor: Palette.secondary, selectionHandleColor: Palette.primary);
   }
 
   static floatingActionButtonTheme() {

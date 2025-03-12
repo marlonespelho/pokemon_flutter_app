@@ -7,8 +7,7 @@ import 'package:nasa_daily_app/modules/home/main.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) =>
-            NasaHttpService(baseUrl: Environment().config.nasaApiBaseUrl)),
+        Bind((i) => NasaHttpService(baseUrl: Environment().config.nasaApiBaseUrl)),
         Bind((i) => AppStore()),
       ];
 

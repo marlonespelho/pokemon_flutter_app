@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
             icon: buildThemeModeAction(),
           ),
           IconButton(
+            key: const Key("favoritePageButton"),
             onPressed: () {
               Modular.to.pushNamed(HomeModule.favoriteRoute);
             },
@@ -61,9 +62,7 @@ class _HomePageState extends State<HomePage> {
   Observer buildThemeModeAction() {
     return Observer(builder: (context) {
       return Icon(
-        appStore.themeMode == ThemeMode.light
-            ? Icons.dark_mode
-            : Icons.light_mode,
+        appStore.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
       );
     });
   }
@@ -104,6 +103,7 @@ class _HomePageState extends State<HomePage> {
             )
           : homeStore.apodNasa != null
               ? SingleChildScrollView(
+                  padding: EdgeInsets.only(bottom: 64),
                   child: NasaApodWidget(
                     apodNasa: homeStore.apodNasa!,
                     onHdPressed: homeStore.changeShowHD,
