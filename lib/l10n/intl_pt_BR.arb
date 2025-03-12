@@ -8,5 +8,8 @@
   "defaultExceptionMessage": "Serviço indisponível no momento, tente novamente mais tarde.",
   "homeAppBarTitle": "Foto Astronômica do Dia",
   "nasaApodError": "Ocorreu um erro ao tentar obter a Foto Astronimica do dia.",
-  "imageCouldNotBeLoaded": "A imagem não pode ser carregada."
+  "imageCouldNotBeLoaded": "A imagem não pode ser carregada.",
+  "favoritePageTitle": "Favoritos",
+  "favoritePageEmptyList": "Parece que voce ainda não adicionou nenhum item aos favoritos.",
+  "backButtonLabel": "Voltar"
 }

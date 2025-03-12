@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:nasa_daily_app/core/config/system.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nasa_daily_app/core/design/assets/icons/icons_path.dart';
 import 'package:nasa_daily_app/generated/l10n.dart';
 import 'package:nasa_daily_app/modules/app_store.dart';
+import 'package:nasa_daily_app/modules/home/main.dart';
 import 'package:nasa_daily_app/modules/home/models/main.dart';
 import 'package:nasa_daily_app/modules/home/stores/apod_favorite_store.dart';
 import 'package:nasa_daily_app/modules/home/stores/home_store.dart';
@@ -42,8 +44,12 @@ class _HomePageState extends State<HomePage> {
             icon: buildThemeModeAction(),
           ),
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.featured_play_list),
+            onPressed: () {
+              Modular.to.pushNamed(HomeModule.favoriteRoute);
+            },
+            icon: SvgPicture.asset(
+              IconsPath.favoriteListIcon,
+            ),
           ),
         ],
       ),
@@ -79,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         });
       },
       child: Icon(
-        Icons.calendar_today,
+        Icons.calendar_month_outlined,
         color: Theme.of(context).colorScheme.onSecondary,
       ),
     );

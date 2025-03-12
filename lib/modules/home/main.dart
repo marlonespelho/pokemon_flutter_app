@@ -6,11 +6,13 @@ import 'package:nasa_daily_app/modules/home/stores/home_store.dart';
 import 'package:nasa_daily_app/modules/home/use_cases/get_apod_favorite_list_use_case.dart';
 import 'package:nasa_daily_app/modules/home/use_cases/get_nasa_apod_use_case.dart';
 import 'package:nasa_daily_app/modules/home/use_cases/main.dart';
+import 'package:nasa_daily_app/modules/home/views/favorite_page/main.dart';
 import 'package:nasa_daily_app/modules/home/views/home_page/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeModule extends Module {
   static const String homeRoute = "/home";
+  static const String favoriteRoute = "/home/favorite";
 
   @override
   List<Bind> get binds => [
@@ -35,5 +37,6 @@ class HomeModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute("/", child: (_, args) => const HomePage()),
+        ChildRoute("/favorite", child: (_, args) => const FavoritePage()),
       ];
 }
