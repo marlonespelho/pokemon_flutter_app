@@ -9,7 +9,7 @@ abstract class AppStoreBase with Store {
   AppStoreBase();
 
   @observable
-  ThemeMode themeMode = ThemeMode.system;
+  ThemeMode themeMode = ThemeMode.light;
 
   changeThemeMode() {
     themeMode = themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
