@@ -1,6 +1,6 @@
 {
-    "name": "nasa_daily_app",
-    "short_name": "nasa_daily_app",
+    "name": "pokemon_app",
+    "short_name": "pokemon_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

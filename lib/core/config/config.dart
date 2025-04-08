@@ -1,11 +1,9 @@
-import 'package:nasa_daily_app/core/config/constants.dart';
+import 'package:pokemon_app/core/config/constants.dart';
 
 abstract class BaseConfig {
   String get environmentName;
 
-  String get nasaApiKey;
-
-  String get nasaApiBaseUrl;
+  String get pokeApiBaseUrl;
 }
 
 class ProductionConfig extends BaseConfig {
@@ -13,10 +11,7 @@ class ProductionConfig extends BaseConfig {
   String get environmentName => 'Production';
 
   @override
-  String get nasaApiBaseUrl => String.fromEnvironment(Constants.nasaApiBaseUrl, defaultValue: 'https://api.nasa.gov/');
-
-  @override
-  String get nasaApiKey => String.fromEnvironment(Constants.nasaApiKey, defaultValue: '');
+  String get pokeApiBaseUrl => String.fromEnvironment(Constants.pokeApiBaseUrl, defaultValue: 'https://pokeapi.co/api/v2/');
 }
 
 class StagingConfig extends BaseConfig {
@@ -24,9 +19,6 @@ class StagingConfig extends BaseConfig {
   String get environmentName => 'Staging';
 
   @override
-  String get nasaApiBaseUrl => String.fromEnvironment(Constants.nasaApiBaseUrl, defaultValue: 'https://api.nasa.gov/');
+  String get pokeApiBaseUrl => String.fromEnvironment(Constants.pokeApiBaseUrl, defaultValue: 'https://pokeapi.co/api/v2/');
 
-  @override
-  String get nasaApiKey =>
-      String.fromEnvironment(Constants.nasaApiKey, defaultValue: 'xTwXRN7mCOoHrHPKSrIanFsmP6EXTUTOZOTrsuam');
 }

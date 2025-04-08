@@ -1,4 +1,4 @@
-package br.com.mespelho.nasaapp.nasa_daily_app
+package br.com.mespelho.pokemonapp.pokemon_app
 
 import io.flutter.embedding.android.FlutterActivity
 

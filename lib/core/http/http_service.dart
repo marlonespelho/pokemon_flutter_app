@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:nasa_daily_app/generated/l10n.dart';
+import 'package:pokemon_app/generated/l10n.dart';
 
 abstract class HttpService {
   HttpService(this.baseUrl, this.timeout);

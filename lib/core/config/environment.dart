@@ -1,4 +1,4 @@
-import 'package:nasa_daily_app/core/config/config.dart';
+import 'package:pokemon_app/core/config/config.dart';
 
 class Environment {
   factory Environment() {

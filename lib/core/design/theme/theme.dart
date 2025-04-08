@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nasa_daily_app/core/design/theme/palette.dart';
+import 'package:pokemon_app/core/design/theme/palette.dart';
 
 class DefaultTheme {
   static void init() {

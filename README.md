@@ -1,12 +1,12 @@
-# nasa_daily_app
+# pokemon_app
 
-A Flutter project for show and favorite image from Nasa API
+A Flutter project for show and favorite pokemons from PokeAPI
 
 ## Getting Started
 ## Run the project
 - To run the project, you need to have Flutter installed, you can follow the steps at https://docs.flutter.dev/get-started/install.
 - After installing Flutter, first run the command `flutter pub get` in the project folder.
-- Then change the access key for NASA API in the `lib/config.dart` file. Then run the command `flutter run` to run the project.
+- Then run the command `flutter run` to run the project.
 
 ## Before Commit Guide
 1. Run the command `dart run build_runner build --delete-conflicting-outputs` to generate MobX files;
@@ -19,7 +19,6 @@ A Flutter project for show and favorite image from Nasa API
 
 ### Integration Tests
 - To run the integration tests, use the following guide:
-    - Change the access key for NASA API in the `lib/config.dart` file;
     - Run the command `flutter test integration_test` in your IDE;
 
 ### Unit Tests

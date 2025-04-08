@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import 'package:nasa_daily_app/core/design/widgets/snack_bar.dart';
-import 'package:nasa_daily_app/core/http/http_service.dart';
+import 'package:pokemon_app/core/design/widgets/snack_bar.dart';
+import 'package:pokemon_app/core/http/http_service.dart';
 
 handleException(Object e, [Function? onError, stack]) async {
   if (onError != null) {

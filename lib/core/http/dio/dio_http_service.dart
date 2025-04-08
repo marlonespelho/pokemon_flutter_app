@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
-import 'package:nasa_daily_app/core/design/widgets/error_widget.dart';
-import 'package:nasa_daily_app/core/http/dio/dio_interceptors.dart';
-import 'package:nasa_daily_app/core/http/http_service.dart';
+import 'package:pokemon_app/core/design/widgets/error_widget.dart';
+import 'package:pokemon_app/core/http/dio/dio_interceptors.dart';
+import 'package:pokemon_app/core/http/http_service.dart';
 
 class DioHttpService implements HttpService {
   late Dio _client;

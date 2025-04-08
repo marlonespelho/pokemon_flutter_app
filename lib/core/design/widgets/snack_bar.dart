@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nasa_daily_app/core/design/theme/palette.dart';
-import 'package:nasa_daily_app/core/services/main.dart';
+import 'package:pokemon_app/core/design/theme/palette.dart';
+import 'package:pokemon_app/core/services/main.dart';
 
 showSnackBarMessage({required String message, required SnackBarTypeEnum type}) {
   var context = GetIt.I.get<NavigationService>().navigatorKey.currentState?.context;

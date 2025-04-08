@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nasa_daily_app/core/design/theme/color_helpers.dart';
+import 'package:pokemon_app/core/design/theme/color_helpers.dart';
 
 class Palette {
   static const Color primary = Color(0xFF2C2925);

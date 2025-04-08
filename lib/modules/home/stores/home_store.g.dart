@@ -24,42 +24,10 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  late final _$showHDAtom = Atom(name: 'HomeStoreBase.showHD', context: context);
-
-  @override
-  bool get showHD {
-    _$showHDAtom.reportRead();
-    return super.showHD;
-  }
-
-  @override
-  set showHD(bool value) {
-    _$showHDAtom.reportWrite(value, super.showHD, () {
-      super.showHD = value;
-    });
-  }
-
-  late final _$apodNasaAtom = Atom(name: 'HomeStoreBase.apodNasa', context: context);
-
-  @override
-  APODNasaModel? get apodNasa {
-    _$apodNasaAtom.reportRead();
-    return super.apodNasa;
-  }
-
-  @override
-  set apodNasa(APODNasaModel? value) {
-    _$apodNasaAtom.reportWrite(value, super.apodNasa, () {
-      super.apodNasa = value;
-    });
-  }
-
   @override
   String toString() {
     return '''
 isLoading: ${isLoading},
-showHD: ${showHD},
-apodNasa: ${apodNasa}
     ''';
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:nasa_daily_app/core/http/http_service.dart';
+import 'package:pokemon_app/core/http/http_service.dart';
 
 class DioInterceptor extends InterceptorsWrapper {
   @override
