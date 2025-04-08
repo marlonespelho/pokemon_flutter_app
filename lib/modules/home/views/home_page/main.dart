@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pokemon_app/core/design/assets/icons/icons_path.dart';
 import 'package:pokemon_app/generated/l10n.dart';
 import 'package:pokemon_app/modules/app_store.dart';
+import 'package:pokemon_app/modules/home/models/pokemon.dart';
 import 'package:pokemon_app/modules/home/stores/home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,13 +17,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final HomeStore homeStore = Modular.get();
+  final HomeStore homeStore = GetIt.I.get<HomeStore>();
   final AppStore appStore = Modular.get();
 
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {});
+    Future.microtask(() {
+      homeStore.getPokemonList();
+    });
   }
 
   @override
@@ -67,10 +71,37 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.center,
               child: CircularProgressIndicator(),
             )
-          : SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 64),
-              child: Container(),
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: homeStore.pokemonList!.map((pokemon) {
+                  return buildPokemonCardList(pokemon);
+                }).toList(),
+              ),
             );
     });
+  }
+
+  Card buildPokemonCardList(Pokemon pokemon) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          spacing: 8,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network(
+              pokemon.spriteUrl,
+              height: 100,
+              width: 100,
+            ),
+            Text(pokemon.name),
+          ],
+        ),
+      ),
+    );
   }
 }
