@@ -11,7 +11,8 @@ class ProductionConfig extends BaseConfig {
   String get environmentName => 'Production';
 
   @override
-  String get pokeApiBaseUrl => String.fromEnvironment(Constants.pokeApiBaseUrl, defaultValue: 'https://pokeapi.co/api/');
+  String get pokeApiBaseUrl =>
+      String.fromEnvironment(Constants.pokeApiBaseUrl, defaultValue: 'https://pokeapi.co/api/');
 }
 
 class StagingConfig extends BaseConfig {
@@ -19,6 +20,6 @@ class StagingConfig extends BaseConfig {
   String get environmentName => 'Staging';
 
   @override
-  String get pokeApiBaseUrl => String.fromEnvironment(Constants.pokeApiBaseUrl, defaultValue: 'https://pokeapi.co/api/');
-
+  String get pokeApiBaseUrl =>
+      String.fromEnvironment(Constants.pokeApiBaseUrl, defaultValue: 'https://pokeapi.co/api/');
 }

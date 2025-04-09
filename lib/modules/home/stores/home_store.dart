@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:pokemon_app/core/design/widgets/main.dart';
 import 'package:pokemon_app/core/models/main.dart';
 import 'package:pokemon_app/modules/home/models/main.dart';
 import 'package:pokemon_app/modules/home/use_cases/get_pokemon_list_use_case.dart';
@@ -31,6 +32,23 @@ abstract class HomeStoreBase with Store {
       paginate = null;
     } finally {
       isLoading = false;
+    }
+  }
+
+  @action
+  getNextPage() async {
+    if (paginate?.nextPage != null && !isLoading) {
+      try {
+        isLoading = true;
+        LoadingDialog.showLoading();
+        paginate = await _getPokemonListUseCase.execute(paginate!);
+        LoadingDialog.hideLoading();
+      } catch (e) {
+        paginate = null;
+        LoadingDialog.hideLoading();
+      } finally {
+        isLoading = false;
+      }
     }
   }
 }

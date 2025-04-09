@@ -8,14 +8,13 @@ import 'package:pokemon_app/core/services/main.dart';
 import 'package:pokemon_app/modules/home/stores/main.dart';
 import 'package:pokemon_app/modules/home/use_cases/get_pokemon_list_use_case.dart';
 
-class GetPokemonListUseCaseMock  extends Mock implements GetPokemonListUseCase {}
+class GetPokemonListUseCaseMock extends Mock implements GetPokemonListUseCase {}
 
 class PaginateMock extends Mock implements Paginate {}
 
 class NavigationServiceMock extends Mock implements NavigationService {}
 
 void main() {
-
   TestWidgetsFlutterBinding.ensureInitialized();
   late Faker faker;
   late GetPokemonListUseCaseMock getPokemonListUseCaseMock;
@@ -37,7 +36,7 @@ void main() {
       Paginate paginateMock = Paginate(
         count: 20,
         nextPage: faker.internet.httpsUrl(),
-        previousPage: faker.internet.httpsUrl(),
+        previousPage: null,
         data: [],
       );
       when(() => getPokemonListUseCaseMock.execute(any())).thenAnswer((_) async => paginateMock);
@@ -57,14 +56,43 @@ void main() {
       expect(store.paginate, paginateMock);
     });
 
-
     test("Should return exception when call getPokemonList", () async {
       when(() => getPokemonListUseCaseMock.execute(any())).thenThrow(Exception("Error"));
       await store.getPokemonList();
       expect(store.paginate, null);
     });
-  });
 
+    test("Should return pokemon paginate list when call nextPage", () async {
+      Paginate paginateMock = Paginate(
+        count: 20,
+        nextPage: faker.internet.httpsUrl(),
+        previousPage: faker.internet.httpsUrl(),
+        data: [],
+      );
+      when(() => getPokemonListUseCaseMock.execute(any())).thenAnswer((_) async => paginateMock);
+      store.paginate = Paginate(
+        count: 20,
+        nextPage: faker.internet.httpsUrl(),
+        previousPage: faker.internet.httpsUrl(),
+        data: [],
+      );
+      await store.getNextPage();
+      expect(store.paginate, paginateMock);
+    });
+
+    test("Should return null when call nextPage with paginate null", () async {
+      Paginate paginateMock = Paginate(
+        count: 20,
+        nextPage: faker.internet.httpsUrl(),
+        previousPage: faker.internet.httpsUrl(),
+        data: [],
+      );
+      when(() => getPokemonListUseCaseMock.execute(any())).thenAnswer((_) async => paginateMock);
+      store.paginate = null;
+      await store.getNextPage();
+      expect(store.paginate, null);
+    });
+  });
 }
 
 void setupDependencyInjection() {

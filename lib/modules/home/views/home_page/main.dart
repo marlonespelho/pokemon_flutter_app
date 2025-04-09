@@ -20,86 +20,133 @@ class _HomePageState extends State<HomePage> {
   final HomeStore homeStore = GetIt.I.get<HomeStore>();
   final AppStore appStore = Modular.get();
 
+  final ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
+      scrollController.addListener(() {
+        if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+          homeStore.getNextPage();
+        }
+      });
       homeStore.getPokemonList();
     });
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.current.homeAppBarTitle),
-        actions: [
-          IconButton(
-            onPressed: () {
-              appStore.changeThemeMode();
-            },
-            icon: buildThemeModeAction(),
-          ),
-          IconButton(
-            key: const Key("favoritePageButton"),
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              IconsPath.favoriteListIcon,
-            ),
-          ),
-        ],
-      ),
+      appBar: buildAppBar(context),
       body: buildContent(),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text(S.current.homeAppBarTitle),
+      actions: [
+        IconButton(
+          onPressed: () {
+            appStore.changeThemeMode();
+          },
+          icon: buildThemeModeAction(),
+        ),
+        IconButton(
+          key: const Key("favoritePageButton"),
+          onPressed: () {},
+          icon: Icon(
+            Icons.favorite,
+          ),
+        ),
+      ],
     );
   }
 
   Observer buildThemeModeAction() {
     return Observer(builder: (context) {
       return Icon(
-        appStore.themeMode == ThemeMode.light
-            ? Icons.dark_mode
-            : Icons.light_mode,
+        appStore.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
       );
     });
   }
 
   Observer buildContent() {
     return Observer(builder: (context) {
-      return homeStore.isLoading
-          ? Container(
-              height: MediaQuery.of(context).size.height,
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            )
-          : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                children: homeStore.pokemonList!.map((pokemon) {
-                  return buildPokemonCardList(pokemon);
-                }).toList(),
-              ),
-            );
+      return buildList();
     });
+  }
+
+  Widget buildList() {
+    if (homeStore.isLoading && homeStore.pokemonList == null) {
+      return buildLoading();
+    }
+    return (homeStore.pokemonList?.isEmpty ?? true)
+        ? Center(
+            child: Text(S.current.homeEmptyList),
+          )
+        : RefreshIndicator(
+            onRefresh: () async {
+              if (homeStore.isLoading) return;
+              await homeStore.getPokemonList();
+            },
+            child: Scrollbar(
+              controller: scrollController,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  controller: scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  children: [
+                    ...homeStore.pokemonList!.map((pokemon) {
+                      return buildPokemonCardList(pokemon);
+                    }),
+                  ],
+                ),
+              ),
+            ),
+          );
+  }
+
+  Widget buildLoading() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 32),
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      child: CircularProgressIndicator(),
+    );
   }
 
   Card buildPokemonCardList(Pokemon pokemon) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          spacing: 8,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              pokemon.spriteUrl,
-              height: 100,
-              width: 100,
-            ),
-            Text(pokemon.name),
-          ],
+      color: Theme.of(context).colorScheme.surface,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            spacing: 8,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(
+                pokemon.artwork,
+                height: 100,
+                width: 100,
+              ),
+              Text(pokemon.name),
+            ],
+          ),
         ),
       ),
     );

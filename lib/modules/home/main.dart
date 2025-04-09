@@ -11,8 +11,7 @@ class HomeModule extends Module {
 
   HomeModule() {
     if (!GetIt.I.isRegistered<DefaultGetPokemonListUseCase>()) {
-      GetIt.I.registerSingleton<DefaultGetPokemonListUseCase>(
-          DefaultGetPokemonListUseCase(
+      GetIt.I.registerSingleton<DefaultGetPokemonListUseCase>(DefaultGetPokemonListUseCase(
         repository: GetIt.I.get<DefaultPokeAPIRepository>(),
       ));
     }

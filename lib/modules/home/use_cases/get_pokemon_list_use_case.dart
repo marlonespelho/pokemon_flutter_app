@@ -6,10 +6,14 @@ abstract interface class GetPokemonListUseCase implements UseCase<Paginate, Pagi
 
 class DefaultGetPokemonListUseCase implements GetPokemonListUseCase {
   final PokeApiRepositoryContract _repository;
+
   DefaultGetPokemonListUseCase({required PokeApiRepositoryContract repository}) : _repository = repository;
 
   @override
   Future<Paginate> execute(Paginate params) async {
+    if (params.nextPage != null) {
+      return await _repository.getPokemonListNextPage(paginate: params);
+    }
     return await _repository.getPokemonList(
       limit: params.limit,
     );

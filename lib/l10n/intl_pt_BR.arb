@@ -10,5 +10,6 @@
   "imageCouldNotBeLoaded": "A imagem não pode ser carregada.",
   "favoritePageTitle": "Favoritos",
   "favoritePageEmptyList": "Parece que voce ainda não adicionou nenhum item aos favoritos.",
-  "backButtonLabel": "Voltar"
+  "backButtonLabel": "Voltar",
+  "homeEmptyList": "Parece que não há pokémons disponíveis no momento."
 }

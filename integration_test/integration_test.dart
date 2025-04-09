@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:pokemon_app/core/config/system.dart';
 import 'package:pokemon_app/modules/app_core.dart';
 import 'package:pokemon_app/modules/home/views/home_page/main.dart';
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -15,7 +16,6 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(HomePage), findsOneWidget);
   });
-
 }
 
 Future<void> startApp() async {

@@ -251,7 +251,7 @@ class DarkTheme {
           primary: Palette.darkPrimary,
           onPrimary: Palette.darkOnPrimaryColor,
           onSecondary: Palette.darkOnSecondaryColor,
-          surface: Palette.darkBackgroundColor,
+          surface: Palette.darkBackgroundColor.withValues(alpha: 0.9),
         ),
         scaffoldBackgroundColor: Palette.darkBackgroundColor,
         iconTheme: DarkTheme.iconTheme(),
@@ -283,13 +283,13 @@ class DarkTheme {
 
   static appBarDecoration() {
     return AppBarTheme(
-      color: Palette.darkBackgroundColor,
+      color: Palette.secondary,
       iconTheme: IconThemeData(
-        color: Palette.darkPrimaryTextColor,
+        color: Palette.onSecondaryColor,
       ),
       titleTextStyle: TextStyle(
         fontFamily: GoogleFonts.barlow().fontFamily,
-        color: Palette.onPrimaryColor,
+        color: Palette.onSecondaryColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),

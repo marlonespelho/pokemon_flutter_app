@@ -8,8 +8,10 @@ class Pokemon implements ModelInterface {
   String get name => _name;
   String get url => _url;
 
-  String get spriteUrl => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
+  String get sprite => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
 
+  String get artwork =>
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png';
   @override
   Pokemon.fromJson(Map<String, dynamic> json)
       : _name = json['name'],
