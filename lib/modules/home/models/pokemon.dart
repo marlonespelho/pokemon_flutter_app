@@ -12,6 +12,14 @@ class Pokemon implements ModelInterface {
 
   String get artwork =>
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png';
+
+  Pokemon({
+    required String name,
+    required String url,
+    required this.id,
+  })  : _name = name,
+        _url = url;
+
   @override
   Pokemon.fromJson(Map<String, dynamic> json)
       : _name = json['name'],

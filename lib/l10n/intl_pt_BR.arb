@@ -26,5 +26,6 @@
   "growRateLabel": "Taxa de Crescimento",
   "captureRateLabel": "Taxa de Captura",
   "showToastErrorMessage": "Erro ao exibir mensagem.",
-  "addToFavoriteMessage": "Adicionado {value} aos favoritos com sucesso."
+  "addToFavoriteMessage": "Adicionado {value} aos favoritos com sucesso.",
+  "removeFromFavoriteMessage": "Removido {value} dos favoritos com sucesso."
 }

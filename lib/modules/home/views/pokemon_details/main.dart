@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokemon_app/core/design/theme/palette.dart';
 import 'package:pokemon_app/generated/l10n.dart';
+import 'package:pokemon_app/modules/favorite/widgets/favorite_icon_widget.dart';
 import 'package:pokemon_app/modules/home/models/main.dart';
 import 'package:pokemon_app/modules/home/stores/pokemon_details_store.dart';
 import 'package:pokemon_app/modules/home/views/pokemon_details/about_tab_widget.dart';
@@ -35,21 +36,28 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
     return Observer(builder: (context) {
       return Scaffold(
         backgroundColor: store.pokemonDetails?.specie?.getColor() ?? Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Palette.primaryTextColor,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          backgroundColor: Colors.transparent,
-        ),
+        appBar: buildAppBar(context),
         body: buildContent(),
       );
     });
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back,
+          color: Palette.primaryTextColor,
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      backgroundColor: Colors.transparent,
+      actions: [
+        FavoriteIconWidget(pokemon: widget.pokemon),
+      ],
+    );
   }
 
   buildContent() {
@@ -94,7 +102,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                       fontSize: 40,
                     ),
               ),
-              TagsWidget(pokemonDetails: store.pokemonDetails!),
+              if (store.pokemonDetails != null) TagsWidget(pokemonDetails: store.pokemonDetails!),
             ],
           ),
           Text(
@@ -152,12 +160,10 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
             height: MediaQuery.of(context).size.height * 0.4,
             child: TabBarView(
               children: [
-                AboutTabWidget(
-                  pokemonDetails: store.pokemonDetails!,
-                ),
-                StatsTabWidget(
-                  stats: store.pokemonDetails!.stats,
-                ),
+                if (store.pokemonDetails != null) ...[
+                  AboutTabWidget(pokemonDetails: store.pokemonDetails!),
+                  StatsTabWidget(stats: store.pokemonDetails!.stats),
+                ]
               ],
             ),
           ),

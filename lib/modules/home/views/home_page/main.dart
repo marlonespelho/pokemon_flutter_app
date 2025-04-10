@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokemon_app/generated/l10n.dart';
 import 'package:pokemon_app/modules/app_store.dart';
+import 'package:pokemon_app/modules/favorite/stores/favorite_store.dart';
 import 'package:pokemon_app/modules/home/stores/home_store.dart';
 import 'package:pokemon_app/modules/home/views/home_page/pokemon_card_list.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokemon_app/modules/favorite/main.dart';
 import 'package:pokemon_app/modules/home/repositories/poke_api_repository/main.dart';
 import 'package:pokemon_app/modules/home/stores/home_store.dart';
 import 'package:pokemon_app/modules/home/stores/pokemon_details_store.dart';
@@ -10,6 +11,13 @@ import 'package:pokemon_app/modules/home/views/pokemon_details/main.dart';
 class HomeModule extends Module {
   static const String homeRoute = "/home";
   static const String detailsRoute = "/home/details";
+
+  @override
+  List<Module> get imports {
+    return [
+      FavoriteModule(),
+    ];
+  }
 
   HomeModule() {
     if (!GetIt.I.isRegistered<DefaultGetPokemonListUseCase>()) {
