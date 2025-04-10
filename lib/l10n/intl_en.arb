@@ -24,5 +24,7 @@
   "mythicalLabel": "Mythical",
   "habitatLabel": "Habitat",
   "growRateLabel": "Growth Rate",
-  "captureRateLabel": "Capture Rate"
+  "captureRateLabel": "Capture Rate",
+  "showToastErrorMessage": "Error displaying message.",
+  "addToFavoriteMessage": "Successfully added to favorites."
 }

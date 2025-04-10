@@ -101,6 +101,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: GridView.count(
                   crossAxisCount: 2,
+                  childAspectRatio: 0.8,
                   controller: scrollController,
                   physics: const BouncingScrollPhysics(),
                   crossAxisSpacing: 16,
