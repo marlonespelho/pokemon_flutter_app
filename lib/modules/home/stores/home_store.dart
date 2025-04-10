@@ -1,5 +1,4 @@
 import 'package:mobx/mobx.dart';
-import 'package:pokemon_app/core/design/widgets/main.dart';
 import 'package:pokemon_app/core/models/main.dart';
 import 'package:pokemon_app/modules/home/models/main.dart';
 import 'package:pokemon_app/modules/home/use_cases/get_pokemon_list_use_case.dart';
@@ -13,6 +12,17 @@ abstract class HomeStoreBase with Store {
 
   HomeStoreBase({required GetPokemonListUseCase getPokemonListUseCase})
       : _getPokemonListUseCase = getPokemonListUseCase;
+
+  Function? showProgressDialog;
+  Function? hideProgressDialog;
+
+  setupCallbacks({
+    Function? showProgressDialog,
+    Function? hideProgressDialog,
+  }) {
+    this.showProgressDialog = showProgressDialog;
+    this.hideProgressDialog = hideProgressDialog;
+  }
 
   @observable
   bool isLoading = false;
@@ -40,12 +50,12 @@ abstract class HomeStoreBase with Store {
     if (paginate?.nextPage != null && !isLoading) {
       try {
         isLoading = true;
-        LoadingDialog.showLoading();
+        showProgressDialog?.call();
         paginate = await _getPokemonListUseCase.execute(paginate!);
-        LoadingDialog.hideLoading();
+        hideProgressDialog?.call();
       } catch (e) {
         paginate = null;
-        LoadingDialog.hideLoading();
+        hideProgressDialog?.call();
       } finally {
         isLoading = false;
       }

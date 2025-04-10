@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokemon_app/core/design/widgets/main.dart';
+import 'package:pokemon_app/core/services/main.dart';
 import 'package:pokemon_app/generated/l10n.dart';
 import 'package:pokemon_app/modules/app_store.dart';
-import 'package:pokemon_app/modules/favorite/stores/favorite_store.dart';
+import 'package:pokemon_app/modules/favorite/main.dart';
 import 'package:pokemon_app/modules/home/stores/home_store.dart';
 import 'package:pokemon_app/modules/home/views/home_page/pokemon_card_list.dart';
 
@@ -25,6 +27,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Future.microtask(() {
+      homeStore.setupCallbacks(
+        showProgressDialog: LoadingDialog.showLoading,
+        hideProgressDialog: LoadingDialog.hideLoading,
+      );
       scrollController.addListener(() {
         if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
           homeStore.getNextPage();
@@ -60,7 +66,9 @@ class _HomePageState extends State<HomePage> {
         ),
         IconButton(
           key: const Key("favoritePageButton"),
-          onPressed: () {},
+          onPressed: () {
+            pushNamed(routeName: FavoriteModule.favoritesRoute);
+          },
           icon: Icon(
             Icons.favorite,
           ),

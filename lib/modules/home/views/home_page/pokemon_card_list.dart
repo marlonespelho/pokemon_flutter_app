@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
 import 'package:pokemon_app/core/design/widgets/main.dart';
-import 'package:pokemon_app/core/services/main.dart';
-import 'package:pokemon_app/generated/l10n.dart';
-import 'package:pokemon_app/modules/favorite/stores/favorite_store.dart';
 import 'package:pokemon_app/modules/favorite/widgets/favorite_icon_widget.dart';
 import 'package:pokemon_app/modules/home/main.dart';
 import 'package:pokemon_app/modules/home/models/main.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PokemonCardList extends StatefulWidget {
   final Pokemon pokemon;
@@ -20,8 +15,6 @@ class PokemonCardList extends StatefulWidget {
 }
 
 class _PokemonCardListState extends State<PokemonCardList> {
-  final FavoriteStore favoriteStore = Modular.get();
-
   @override
   void initState() {
     super.initState();
@@ -49,10 +42,14 @@ class _PokemonCardListState extends State<PokemonCardList> {
             children: [
               buildHeader(context),
               Expanded(
-                child: Image.network(
-                  widget.pokemon.artwork,
+                child: CachedNetworkImage(
+                  imageUrl: widget.pokemon.artwork,
                   height: 100,
                   width: 100,
+                  progressIndicatorBuilder: (_, __, progress) => Center(
+                    child: ShimmerLoading(height: 100, width: 100),
+                  ),
+                  errorWidget: (_, __, error) => const Icon(Icons.error),
                 ),
               ),
               Text(widget.pokemon.name),

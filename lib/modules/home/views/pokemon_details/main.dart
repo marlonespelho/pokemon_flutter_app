@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokemon_app/core/design/theme/palette.dart';
+import 'package:pokemon_app/core/design/widgets/shimmer_loading.dart';
 import 'package:pokemon_app/generated/l10n.dart';
 import 'package:pokemon_app/modules/favorite/widgets/favorite_icon_widget.dart';
 import 'package:pokemon_app/modules/home/models/main.dart';
@@ -74,10 +76,14 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             buildTitle(),
-            Image.network(
-              store.pokemonDetails?.sprites.officialArtwork ?? '',
+            CachedNetworkImage(
+              imageUrl: store.pokemonDetails?.sprites.officialArtwork ?? '',
               height: 200,
               width: 200,
+              progressIndicatorBuilder: (_, __, progress) => Center(
+                child: ShimmerLoading(height: 200, width: 200),
+              ),
+              errorWidget: (_, __, error) => const Icon(Icons.error),
             ),
             buildDetails(),
           ],
@@ -145,30 +151,30 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   }
 
   Widget buildDefaultTabController() {
-    return DefaultTabController(
-      length: 2,
-      child: Column(
-        spacing: 32,
-        children: [
-          TabBar(
-            tabs: [
-              Tab(text: S.current.aboutLabel),
-              Tab(text: S.current.statsLabel),
-            ],
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: TabBarView(
+    return store.pokemonDetails != null
+        ? DefaultTabController(
+            length: 2,
+            child: Column(
+              spacing: 32,
               children: [
-                if (store.pokemonDetails != null) ...[
-                  AboutTabWidget(pokemonDetails: store.pokemonDetails!),
-                  StatsTabWidget(stats: store.pokemonDetails!.stats),
-                ]
+                TabBar(
+                  tabs: [
+                    Tab(text: S.current.aboutLabel),
+                    Tab(text: S.current.statsLabel),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: TabBarView(
+                    children: [
+                      AboutTabWidget(pokemonDetails: store.pokemonDetails!),
+                      StatsTabWidget(stats: store.pokemonDetails!.stats),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        : SizedBox();
   }
 }

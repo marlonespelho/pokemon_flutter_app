@@ -13,11 +13,10 @@ class TagsWidget extends StatelessWidget {
       spacing: 8,
       children: [
         ...pokemonDetails.types
-                .map(
-                  (type) => buildTagWidget(type.name, context),
-                )
-                .toList() ??
-            [],
+            .map(
+              (type) => buildTagWidget(type.name, context),
+            )
+            .toList(),
         if (pokemonDetails.specie?.isBaby ?? false) buildTagWidget(S.current.babyLabel, context),
         if (pokemonDetails.specie?.isLegendary ?? false) buildTagWidget(S.current.legendaryLabel, context),
         if (pokemonDetails.specie?.isMythical ?? false) buildTagWidget(S.current.mythicalLabel, context),

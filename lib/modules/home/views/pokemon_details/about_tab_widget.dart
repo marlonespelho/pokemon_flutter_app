@@ -21,15 +21,15 @@ class AboutTabWidget extends StatelessWidget {
           ),
           RowTextLabel(
             label: S.current.heightLabel,
-            value: '${pokemonDetails.height.toString() ?? ''} cm',
+            value: '${pokemonDetails.height.toString()} cm',
           ),
           RowTextLabel(
             label: S.current.weightLabel,
-            value: '${pokemonDetails.weight.toString() ?? ''} kg',
+            value: '${pokemonDetails.weight.toString()} kg',
           ),
           RowTextLabel(
             label: S.current.baseExperienceLabel,
-            value: pokemonDetails.baseExperience.toString() ?? '',
+            value: pokemonDetails.baseExperience.toString(),
           ),
           RowTextLabel(
             label: S.current.growRateLabel,

@@ -5,16 +5,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pokemon_app/core/config/system.dart';
 import 'package:pokemon_app/modules/app_core.dart';
+import 'package:pokemon_app/modules/favorite/views/favorite_page/main.dart';
+import 'package:pokemon_app/modules/favorite/widgets/favorite_icon_widget.dart';
 import 'package:pokemon_app/modules/home/views/home_page/main.dart';
+import 'package:pokemon_app/modules/home/views/home_page/pokemon_card_list.dart';
+import 'package:pokemon_app/modules/home/views/pokemon_details/main.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('should open home page and show APODWidget', (WidgetTester tester) async {
+  testWidgets('should open home page and show PokemonList', (WidgetTester tester) async {
     await startApp();
     await tester.pumpAndSettle();
     await tester.pumpAndSettle();
     expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(PokemonCardList), findsWidgets);
+  });
+
+  testWidgets('should add and remove favorite pokemon', (WidgetTester tester) async {
+    await startApp();
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
+    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(PokemonCardList), findsWidgets);
+    await tester.tap(find.byType(FavoriteIconWidget).first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key("favoritePageButton")).first);
+    await tester.pumpAndSettle();
+    expect(find.byType(FavoritePage), findsOneWidget);
+    expect(find.byType(PokemonCardList), findsWidgets);
+    await tester.tap(find.byType(FavoriteIconWidget).first);
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('should open pokemon details page', (WidgetTester tester) async {
+    await startApp();
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
+    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(PokemonCardList), findsWidgets);
+    await tester.tap(find.byType(PokemonCardList).first);
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
+    expect(find.byType(PokemonDetailsPage), findsOneWidget);
   });
 }
 

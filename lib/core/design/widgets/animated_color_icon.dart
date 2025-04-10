@@ -48,6 +48,12 @@ class _AnimatedColorIconState extends State<AnimatedColorIcon> with SingleTicker
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
