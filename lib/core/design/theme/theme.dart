@@ -40,7 +40,7 @@ class DefaultTheme {
             color: Palette.primaryTextColor,
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            fontFamily: GoogleFonts.barlow().fontFamily,
+            fontFamily: GoogleFonts.urbanist().fontFamily,
           ),
         ),
         textButtonTheme: DefaultTheme.textButtonTheme(),
@@ -61,7 +61,7 @@ class DefaultTheme {
         color: Palette.secondary,
       ),
       titleTextStyle: TextStyle(
-        fontFamily: GoogleFonts.barlow().fontFamily,
+        fontFamily: GoogleFonts.urbanist().fontFamily,
         color: Palette.onPrimaryColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
@@ -114,7 +114,7 @@ class DefaultTheme {
     );
   }
 
-  static TextTheme textTheme() => GoogleFonts.barlowTextTheme(
+  static TextTheme textTheme() => GoogleFonts.urbanistTextTheme(
         const TextTheme(
           titleLarge: TextStyle(
             fontSize: 20,
@@ -267,7 +267,7 @@ class DarkTheme {
             color: Palette.primaryTextColor,
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            fontFamily: GoogleFonts.barlow().fontFamily,
+            fontFamily: GoogleFonts.urbanist().fontFamily,
           ),
         ),
         textButtonTheme: DarkTheme.textButtonTheme(),
@@ -276,8 +276,14 @@ class DarkTheme {
         appBarTheme: appBarDecoration(),
         progressIndicatorTheme: progressIndicatorTheme(),
         cardColor: Palette.secondary,
-        cardTheme: const CardTheme(color: Colors.white, elevation: 2),
+        cardTheme: CardTheme(color: Palette.darkBackgroundColor.withValues(alpha: 0.9), elevation: 2),
         dividerColor: Palette.dividerColor,
+        tabBarTheme: const TabBarTheme(
+          labelColor: Palette.darkPrimaryTextColor,
+          unselectedLabelColor: Palette.darkPrimaryTextColor,
+          indicatorColor: Palette.darkSecondary,
+          dividerColor: Colors.transparent,
+        ),
         canvasColor: Colors.white,
       );
 
@@ -288,7 +294,7 @@ class DarkTheme {
         color: Palette.onSecondaryColor,
       ),
       titleTextStyle: TextStyle(
-        fontFamily: GoogleFonts.barlow().fontFamily,
+        fontFamily: GoogleFonts.urbanist().fontFamily,
         color: Palette.onSecondaryColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
@@ -341,7 +347,7 @@ class DarkTheme {
     );
   }
 
-  static TextTheme textTheme() => GoogleFonts.barlowTextTheme(
+  static TextTheme textTheme() => GoogleFonts.urbanistTextTheme(
         const TextTheme(
           titleLarge: TextStyle(
             fontSize: 20,

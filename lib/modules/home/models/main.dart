@@ -1,1 +1,9 @@
 export 'pokemon.dart';
+export 'ability.dart';
+export 'pokemon_type.dart';
+export 'sprite.dart';
+export 'stat.dart';
+export 'pokemon_details.dart';
+export 'pokedex.dart';
+export 'pokedex_number.dart';
+export 'pokemon_specie.dart';

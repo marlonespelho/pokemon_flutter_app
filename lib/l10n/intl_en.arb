@@ -11,5 +11,18 @@
   "favoritePageTitle": "Favorites",
   "favoritePageEmptyList": "It looks like you haven't added any items to your favorites yet.",
   "backButtonLabel": "Back",
-  "homeEmptyList": "It looks like there are no pokémons available at the moment."
+  "homeEmptyList": "It looks like there are no pokémons available at the moment.",
+  "aboutLabel": "About",
+  "statsLabel": "Stats",
+  "abilitiesLabel": "Abilities",
+  "heightLabel": "Height",
+  "weightLabel": "Weight",
+  "baseExperienceLabel": "Base Experience",
+  "generationLabel": "Generation",
+  "babyLabel": "Baby",
+  "legendaryLabel": "Legendary",
+  "mythicalLabel": "Mythical",
+  "habitatLabel": "Habitat",
+  "growRateLabel": "Growth Rate",
+  "captureRateLabel": "Capture Rate"
 }

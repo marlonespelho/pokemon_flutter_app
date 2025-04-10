@@ -27,7 +27,7 @@ abstract class HomeStoreBase with Store {
   getPokemonList() async {
     isLoading = true;
     try {
-      paginate = await _getPokemonListUseCase.execute(Paginate(limit: 20));
+      paginate = await _getPokemonListUseCase.execute(Paginate(limit: 10));
     } catch (e) {
       paginate = null;
     } finally {

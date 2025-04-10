@@ -1,6 +1,6 @@
 import 'package:pokemon_app/core/models/main.dart';
 import 'package:pokemon_app/core/services/main.dart';
-import 'package:pokemon_app/modules/home/models/pokemon.dart';
+import 'package:pokemon_app/modules/home/models/main.dart';
 
 abstract class PokeApiRepositoryContract {
   final PokeAPIHttpService _httpService;
@@ -10,6 +10,10 @@ abstract class PokeApiRepositoryContract {
   Future<Paginate> getPokemonList({int limit = 20});
 
   Future<Paginate> getPokemonListNextPage({required Paginate paginate});
+
+  Future<PokemonDetails> getPokemonDetails({required String name});
+
+  Future<PokemonSpecie> getPokemonSpecie({required int id});
 }
 
 class DefaultPokeAPIRepository implements PokeApiRepositoryContract {
@@ -43,6 +47,23 @@ class DefaultPokeAPIRepository implements PokeApiRepositoryContract {
     ];
 
     return Paginate.fromJson(response, data: data);
+  }
+
+  @override
+  Future<PokemonDetails> getPokemonDetails({required String name}) async {
+    var response = await _httpService.get(path: '/v2/pokemon/$name');
+
+    PokemonDetails pokemonDetails = PokemonDetails.fromJson(response);
+    PokemonSpecie pokemonSpecie = await getPokemonSpecie(id: pokemonDetails.id);
+    pokemonDetails.specie = pokemonSpecie;
+    return pokemonDetails;
+  }
+
+  @override
+  Future<PokemonSpecie> getPokemonSpecie({required int id}) async {
+    var response = await _httpService.get(path: '/v2/pokemon-species/$id');
+
+    return PokemonSpecie.fromJson(response);
   }
 }
 
